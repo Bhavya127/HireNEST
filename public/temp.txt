@@ -1,0 +1,24 @@
+useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch('http://localhost:5000/api/auth/home', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          credentials: 'include' // Important: Include credentials (cookies) in the request
+        });
+        const json = await response.json();
+
+        if (json.success) {
+          console.log("Success test of sessions");
+        } else {
+          console.log("Invalid Credentials", "danger");
+        }
+      } catch (error) {
+        console.error("An error occurred:", error);
+      }
+    };
+
+    fetchData(); // Call the async function inside useEffect
+  }, []); // Empty dependency array to run the effect only once
