@@ -36,7 +36,7 @@ function ApplyJob() {
   // Fetch the user's profile data using the userId
   useEffect(() => {
     if (userId) {
-      fetch(`http://localhost:5000/api/user/profile`, {
+      fetch(`http://localhost:5000/api/create/profile`, {
         method: 'GET',
         credentials: 'include',
       })

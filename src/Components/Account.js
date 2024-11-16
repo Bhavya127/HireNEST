@@ -55,7 +55,7 @@ function Account() {
     const fetchProfileAndPosts = async () => {
       try {
         // Fetch profile
-        const profileResponse = await fetch('http://localhost:5000/api/user/profile', {
+        const profileResponse = await fetch('http://localhost:5000/api/create/profile', {
           method: 'GET',
           credentials: 'include',
         });

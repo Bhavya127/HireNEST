@@ -24,7 +24,7 @@ export default function CreatePost() {
     };
 
     const createPost = (imageUrl, publicId) => {
-        fetch("http://localhost:5000/api/user/upload/createPost", {
+        fetch("http://localhost:5000/api/images/upload/createPost", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
