@@ -1,8 +1,8 @@
-// ClientHome.js
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import Sidebar from "./SidebarComponents/Sidebar";
-import SymbolicNavabar from "./SidebarComponents/SymbolicNavabar";
+import Sidebar from './SidebarComponents/Sidebar';
+import SymbolicNavabar from './SidebarComponents/SymbolicNavabar';
+import Landing from './Landing';
 
 export default function ClientHome() {
   const [searchQuery, setSearchQuery] = useState('');
@@ -48,7 +48,7 @@ export default function ClientHome() {
         </div>
       </div>
 
-      <div className='flex justify-between'>
+      <div className="flex justify-between">
         <div className="search-bar flex mx-5">
           <input
             type="text"
@@ -65,8 +65,8 @@ export default function ClientHome() {
             Search
           </button>
         </div>
-        <div className='mt-3'>
-          <Link to="/createpost" className='bg-black rounded-full text-white p-3'>
+        <div className="mt-3">
+          <Link to="/createpost" className="bg-black rounded-full text-white p-3">
             + Create Post
           </Link>
         </div>
@@ -74,8 +74,8 @@ export default function ClientHome() {
 
       {error && <p className="text-red-500 mt-3">{error}</p>}
 
-      {/* Display Job Results */}
-      <div className="job-list mt-5 px-5 w-3/5">
+      {/* Display Job Results with absolute positioning */}
+      <div className="job-list mt-20 px-5 w-3/5 absolute z-10 top-16 left-0 right-0 bg-white rounded-xl">
         {results.jobs.length > 0 ? (
           results.jobs.map((job) => (
             <div key={job._id} className="p-5 bg-white my-3 rounded-3xl shadow-lg border border-gray-300">
@@ -89,7 +89,7 @@ export default function ClientHome() {
 
               <div className="text-right">
                 <button
-                  onClick={() => navigate('/applyjobs', { state: { jobId: job._id } })}
+                  onClick={() => navigate('/applyjobs', { state: { jobId: job._id, recruiterId: job.recruiterId } })}
                   className="text-black bg-gradient-to-r from-cyan-500 to-blue-500 px-1 py-4 rounded-3xl"
                 >
                   <span className="bg-white px-3 py-3 rounded-3xl hover:bg-transparent hover:text-white">
@@ -100,18 +100,18 @@ export default function ClientHome() {
             </div>
           ))
         ) : (
-          <p>No jobs found.</p>
+          <p></p>
         )}
       </div>
 
       {/* Display User Results */}
-      <div className="user-list mt-5 px-5 w-3/5">
+      <div className="user-list mt-16 px-5 w-3/5 absolute z-10 top-24 left-0 right-0 bg-white shadow-lg rounded-xl">
         {results.users.length > 0 ? (
           results.users.map((user) => (
             <div
               key={user._id}
               className="p-5 bg-white my-3 rounded-3xl shadow-lg border border-gray-300 cursor-pointer"
-              onClick={() => handleUserClick(user._id)}
+              onClick={() => handleUserClick(user.userId)}  
             >
               <h3 className="text-lg font-bold">Name: {user.firstname} {user.lastname}</h3>
               <p>Designation: {user.designation}</p>
@@ -119,9 +119,12 @@ export default function ClientHome() {
             </div>
           ))
         ) : (
-          <p>No users found.</p>
+          <p></p>
         )}
       </div>
+
+      {/* Landing component */}
+      <Landing />
     </div>
   );
 }

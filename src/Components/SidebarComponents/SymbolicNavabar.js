@@ -20,7 +20,7 @@ export default function ClientHome({ variant = "symbolic" }) {
       <div className={`flex flex-col ${isOpen ? 'w-48' : 'w-16'} transition-all duration-300 h-full`}>
        
 
-        <div className="flex flex-col mt-3 w-full bg-black rounded-2xl">
+        <div className="flex flex-col w-full bg-black rounded-2xl">
           {menuItems.map((item, index) => (
             <Link
               key={index}

@@ -93,99 +93,90 @@ function Account() {
   if (!userData.profile) return <div className="text-center mt-10">No profile data available.</div>;
 
   return (
-    <div className="flex justify-center items-center min-h-screen bg-gradient-to-br from-gray-100 to-gray-300 py-12">
-      <div className="w-full max-w-4xl bg-white rounded-lg shadow-2xl p-10">
-        <div className="flex flex-col md:flex-row items-center md:space-x-10">
-          <div className="bg-gradient-to-br from-cyan-500 to-blue-500 p-12 rounded-full shadow-md">
-            <FontAwesomeIcon icon={faUser} className="h-20 text-white" />
-          </div>
-          <div className="text-center md:text-left">
-            <h1 className="text-4xl font-semibold text-gray-800">
-              {userData.profile.firstname} {userData.profile.lastname}
-            </h1>
-            <p className="text-lg text-gray-600">{userData.profile.designation || 'No designation available'}</p>
-            <p className="text-gray-500">{userData.profile.bio || 'Write something about yourself'}</p>
-          </div>
-          <div>
-            <FontAwesomeIcon
-              icon={faPenToSquare}
-              className="text-2xl text-gray-500 hover:text-cyan-500 cursor-pointer"
-              onClick={() => alert('Edit profile functionality here')}
-            />
-          </div>
-        </div>
-        <div className="mt-8">
-          <h2 className="text-3xl font-semibold text-gray-800">Profile Details</h2>
-          <div className="mt-6 space-y-8">
-            <div className="border-b pb-4">
-              <div className="flex justify-between items-center">
-                <h3 className="text-xl font-medium text-gray-700">Designation</h3>
-                <FontAwesomeIcon
-                  icon={faPenToSquare}
-                  className="text-gray-500 hover:text-cyan-500 cursor-pointer"
-                  onClick={() => alert('Edit designation functionality here')}
-                />
-              </div>
-              <p className="text-gray-600 mt-1">{userData.profile.designation || 'Not provided'}</p>
-            </div>
-            <div className="border-b pb-4">
-              <div className="flex justify-between items-center">
-                <h3 className="text-xl font-medium text-gray-700">Education</h3>
-                <FontAwesomeIcon
-                  icon={faPenToSquare}
-                  className="text-gray-500 hover:text-cyan-500 cursor-pointer"
-                  onClick={() => alert('Edit education functionality here')}
-                />
-              </div>
-              <p className="text-gray-600 mt-1">{userData.profile.education || 'Not provided'}</p>
-            </div>
-            <div className="pb-4">
-              <div className="flex justify-between items-center">
-                <h3 className="text-xl font-medium text-gray-700">Skills</h3>
-                <FontAwesomeIcon
-                  icon={faPenToSquare}
-                  className="text-gray-500 hover:text-cyan-500 cursor-pointer"
-                  onClick={() => alert('Edit skills functionality here')}
-                />
-              </div>
-              <div className="mt-4 flex flex-wrap gap-4">
-                {userData.profile.skills && userData.profile.skills.length > 0 ? (
-                  userData.profile.skills.map((skill, index) => (
-                    <div key={index} className="flex items-center bg-gradient-to-r from-white to-gray-50 border border-gray-200 rounded-lg shadow p-3">
-                      <img className="h-10 w-10 rounded-full" src={reactpng} alt={skill} />
-                      <span className="ml-3 text-gray-700">{skill}</span>
-                    </div>
-                  ))
-                ) : (
-                  <p className="text-gray-600">No skills added</p>
-                )}
-              </div>
-            </div>
-            <div>
-              <h3 className="text-xl font-medium text-gray-700">Your Posts</h3>
-              <div className="mt-4 space-y-6">
-                {userData.posts && userData.posts.length > 0 ? (
-                  userData.posts.map((post, index) => (
-                    <div key={index} className="border rounded-lg p-4 bg-gray-50 shadow-sm">
-                      <h4 className="text-lg font-semibold text-gray-700">{post.body}</h4>
-                      {post.image && (
-                        <img
-                          src={post.image.url || constructImageUrl(post.image.public_id)}
-                          alt="Post"
-                          className="mt-2 rounded-lg max-w-full"
-                        />
-                      )}
-                    </div>
-                  ))
-                ) : (
-                  <p className="text-gray-600">No posts available</p>
-                )}
-              </div>
-            </div>
-          </div>
+    <div className="p-2 min-h-screen w-full bg-gradient-to-br from-gray-100 to-gray-300 flex flex-col">
+  {/* Header Section */}
+  <div className="w-full bg-gradient-to-r from-blue-500 to-cyan-500 text-white p-8 flex items-center justify-between rounded-lg">
+    <div className="flex items-center space-x-6">
+      <div className="flex-shrink-0">
+        <div className="w-32 h-32 bg-white rounded-full flex items-center justify-center shadow-md">
+          <FontAwesomeIcon icon={faUser} className="text-6xl text-cyan-500" />
         </div>
       </div>
+      <div>
+        <h1 className="text-4xl font-bold">
+          {userData.profile.firstname} {userData.profile.lastname}
+        </h1>
+        <p className="text-2xl opacity-90">{userData.profile.designation || 'No designation available'}</p>
+        <p className="mt-2 text-white/90">{userData.profile.bio || 'Write something about yourself'}</p>
+      </div>
     </div>
+    <button
+      onClick={() => alert('Edit profile functionality here')}
+      className="bg-white text-cyan-500 px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition"
+    >
+      Edit Profile
+    </button>
+  </div>
+
+  {/* Main Content Section */}
+  <div className="flex-1 py-8 px-1 grid grid-cols-3 gap-6 w-full">
+    {/* Profile Details */}
+    <div className="col-span-1 bg-white rounded-lg shadow-lg p-6">
+      <h2 className="text-2xl font-semibold text-gray-700">Profile Details</h2>
+      <div className="mt-6 space-y-6">
+        {['Designation', 'Education', 'Skills'].map((section, index) => (
+          <div key={index}>
+            <div className="flex justify-between items-center">
+              <h3 className="text-gray-600">{section}</h3>
+              <FontAwesomeIcon
+                icon={faPenToSquare}
+                className="text-gray-500 hover:text-cyan-500 cursor-pointer"
+                onClick={() => alert(`Edit ${section.toLowerCase()} functionality here`)}
+              />
+            </div>
+            <p className="text-gray-800 mt-1">
+              {section === 'Designation'
+                ? userData.profile.designation
+                : section === 'Education'
+                ? userData.profile.education
+                : userData.profile.skills.length > 0
+                ? userData.profile.skills.join(', ')
+                : 'Not provided'}
+            </p>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    {/* Your Posts Section */}
+    <div className="col-span-2 bg-white rounded-lg shadow-lg p-6">
+      <h2 className="text-2xl font-semibold text-gray-700">Your Posts</h2>
+      <div className="mt-6 space-y-6">
+        {userData.posts && userData.posts.length > 0 ? (
+          userData.posts.map((post, index) => (
+            <div
+              key={index}
+              className="bg-gray-50 border rounded-lg p-6 shadow-md hover:shadow-lg transition"
+            >
+              <h4 className="text-lg font-semibold text-gray-800">{post.body}</h4>
+              {post.image && (
+                <img
+                  src={post.image.url || constructImageUrl(post.image.public_id)}
+                  alt="Post"
+                  className="mt-4 w-full h-40 object-cover rounded-lg"
+                />
+              )}
+            </div>
+          ))
+        ) : (
+          <p className="text-gray-600">No posts available</p>
+        )}
+      </div>
+    </div>
+  </div>
+</div>
+
+
   );
 }
 

@@ -21,6 +21,7 @@ import Applications from "./Components/Applications";
 import RecruiterApplications from "./Components/RecruiterApplications";
 import CreatePost from "./Components/CreatePost";
 import UserProfile from "./Components/UserProfile";
+import ApplicationInbox from "./Components/ApplicationInbox";
 
 
 function App() {
@@ -48,6 +49,7 @@ function App() {
       <Route exact path="/applyjobs" element={<ApplyJob/>}/>
       <Route exact path="/Applications" element={<Applications/>}/>
       <Route exact path="/Recruiter/Applications" element={<RecruiterApplications/>}/>
+      <Route exact path="/ApplicationInbox" element={<ApplicationInbox/>}/>
       <Route exact path="/createpost" element={<CreatePost/>}/>
       <Route path="/profile/:userId" element={<UserProfile />} />
 

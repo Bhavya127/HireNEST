@@ -11,7 +11,7 @@ export default function RecruiterDashbaord({ variant = "symbolic" }) {
     { to: '/Recruiter/Info', icon: faUser, label: 'Profile' },
     { to: '/recruiter/Postjob', icon: faBriefcase, label: 'Post a Job' },
     { to: '/Recruiter/Applications', icon: faBriefcase, label: 'JobsPosted' },
-    { to: '/VideoChat', icon: faVideo, label: 'HireNEST' },
+    { to: '/ApplicationInbox', icon: faBriefcase, label: 'Job Applications' },
     { to: '/VideoChat', icon: faVideo, label: 'HireNEST' },
   ];
 

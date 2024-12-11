@@ -110,7 +110,7 @@ function Profile() {
   
       if (response.status === 201) {
         // On success, you can redirect to the profile page or another page
-        navigate('/clienthome');
+        navigate('/applicant/login');
       }
     } catch (error) {
       console.error('There was an error saving the profile!', error);
@@ -228,7 +228,7 @@ function Profile() {
               {filteredSkills.map((skill, index) => (
                 <li
                   key={index}
-                  className="p-2 hover:bg-gray-200 cursor-pointer"
+                  className="dropdown bg-white shadow-lg mt-2 rounded-lg max-h-60 overflow-y-auto cursor-pointer"
                   onClick={() => addSkill(skill)}
                 >
                   {skill}
@@ -237,7 +237,7 @@ function Profile() {
             </ul>
             <div className="mt-2">
               {skills.map((skill, index) => (
-                <span key={index} className="inline-block bg-gray-200 px-2 py-1 rounded-full mr-2">
+                <span key={index} className="inline-block bg-cyan-500 px-2 py-1 rounded-full mr-2 text-xl text-white">
                   {skill}
                   <FontAwesomeIcon
                     icon={faTrash}
@@ -252,7 +252,7 @@ function Profile() {
 
         <button
           type="submit"
-          className="btn w-full mt-5 text-xl"
+          className="btn w-full mt-5 text-xl bg-cyan-600 py-2 text-white"
           disabled={!firstName || !lastName || !designation || !skills.length}
         >
           Save Profile
